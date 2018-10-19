@@ -1,0 +1,52 @@
+<div class='row'>
+  <div class="form-group col-md-6">
+    <label>De:</label>
+    <input (change)="onDateChange()" [(ngModel)]='form.de' type="date" class="form-control">
+  </div>
+  <div class="form-group col-md-6">
+    <label>Até:</label>
+    <input (change)="onDateChange()" [(ngModel)]='form.ate' type="date" class="form-control">
+  </div>
+</div>
+
+<div *ngFor="let dadoProcesso of dados" class="card mb-4">
+  <div class="card-body">
+    <h5 class="card-title">
+      {{dadoProcesso.processo.vaga}}
+    </h5>
+    <h6 class="card-subtitle mb-2 text-muted">
+      {{dadoProcesso.processo.dia.split('-').reverse().join('/')}}
+    </h6>
+    <div class="card-text">
+
+
+      <div class="list-group my-4 flex-row justify-content-around">
+
+        <div class="mr-1 list-group-item flex-column align-items-start col-md-5 col-sm-12">
+          <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-1">Fontes</h5>
+          </div>
+          <p class="mb-1">
+            {{dadoProcesso.processo.fontes}}
+          </p>
+        </div>
+
+        <div class=" list-group-item flex-column align-items-start col-md-5 col-sm-12">
+          <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-1">Triagem Feita Por</h5>
+          </div>
+          <p class="mb-1">
+            {{dadoProcesso.processo.pessoas}}
+          </p>
+        </div>
+
+      </div>
+
+
+      <app-tabela (contadorChange)="onContadorChange($event, dadoProcesso.processo.id)" [tabela]='dadoProcesso.table'>
+
+      </app-tabela>
+
+    </div>
+  </div>
+</div>

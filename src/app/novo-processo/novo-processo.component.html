@@ -1,0 +1,53 @@
+<div class="d-flex justify-content-center mb-4">
+
+  <button class='btn btn-primary'>Novo Processo</button>
+
+</div>
+
+
+<div class="card mb-4">
+  <div class="card-body">
+    <h5 class="card-title">
+      Criar um Novo Processo
+    </h5>
+    <h6 class="card-subtitle mb-2 text-muted">
+      descrição
+    </h6>
+    <div class="card-text mt-2">
+
+      <div class="row">
+
+        <div class="form-group col-md-6 col-sm-12">
+          <label>Vaga</label>
+          <input [(ngModel)]="novo.vaga" type="text" class="form-control">
+          <small class="form-text text-muted">
+            Nome da vaga
+          </small>
+        </div>
+        <div class="form-group col-md-6 col-sm-12">
+          <label>Fontes</label>
+          <input [(ngModel)]="novo.fontes" type="text" class="form-control">
+          <small class="form-text text-muted">
+            Fontes de divulgação usadas
+          </small>
+        </div>
+        <div class="form-group col-md-6 col-sm-12">
+          <label>Triagem feita por</label>
+          <input [(ngModel)]="novo.pessoas" type="text" class="form-control">
+          <small class="form-text text-muted">
+            Nome das pessoas que fizeram
+          </small>
+        </div>
+        <div class="form-group col-md-6 col-sm-12">
+          <label>Data</label>
+          <input [(ngModel)]="novo.dia" type="date" class="form-control">
+
+        </div>
+
+      </div>
+
+      <button (click)="salvar()" class="btn btn-success my-2 col-sm-12">Salvar</button>
+
+    </div>
+  </div>
+</div>

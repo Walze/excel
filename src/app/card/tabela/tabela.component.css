@@ -1,0 +1,81 @@
+.tabela .linha {
+  display: flex;
+  margin-bottom: 1rem;
+  background: #f9f9f9;
+}
+
+.tabela .linha .grupo {
+  background: #f4f4f4;
+  min-width: 160px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  font-family: "Montserrat";
+  padding: 0 2rem;
+  border: 1px rgba(0, 0, 0, 0.125) solid;
+}
+
+.tabela .linha .linhas {
+  padding: 0 1rem;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.tabela .linha .linhas .celula {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-width: calc(33.333% - 1rem);
+  max-width: 100%;
+  cursor: pointer;
+  border: 1px solid #eee;
+  margin: .5rem;
+  padding: .5rem;
+}
+
+.tabela .linha .linhas .celula:hover {
+  background: #eee;
+}
+
+.tabela .linha .linhas .celula:active {
+  background: #ddd;
+}
+
+.tabela .linha .linhas .celula .nome {
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 5px;
+}
+
+.tabela .linha .linhas .celula .valor {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.tabela .linha .linhas .celula .valor {
+  text-align: center;
+  min-width: 50px;
+  font-size: 1.2rem;
+}
+
+@media (max-width: 850px) {
+  .tabela .linha .linhas .celula {
+    width: 100%;
+  }
+}
+
+@media (max-width: 600px) {
+  .tabela .linha {
+    flex-wrap: wrap;
+  }
+  .tabela .linha .grupo {
+    width: 100%;
+    height: 40px;
+    font-size: 1.3rem;
+  }
+}
