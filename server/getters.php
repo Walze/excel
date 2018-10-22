@@ -27,8 +27,15 @@ function getProcessos($db, $dia, $vaga)
     $whereDia = $dia ? "`dia` BETWEEN '{$dia->de}' AND '{$dia->ate}'" : 'true';
     $whereVaga = $vaga ? "vaga = '{$vaga}'" : 'true';
 
-    $query = "SELECT *
-      FROM `processo`
+    $query = "SELECT
+      A.id AS id,
+      A.fontes as fontes,
+      A.pessoas as pessoas,
+      A.dia as dia,
+      B.id as vaga_id,
+      B.nome AS vaga_nome
+      FROM `processo` AS A
+      INNER JOIN `vaga` AS B ON B.id = A.vaga_id
       WHERE {$whereVaga} AND {$whereDia}
     ;";
 
