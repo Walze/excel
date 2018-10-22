@@ -27,7 +27,7 @@ class Linha
 class Processo
 {
     public $id;
-    public $vaga;
+    public $vaga_id;
     public $pessoas;
     public $fontes;
     public $dia;
@@ -37,7 +37,7 @@ class Processo
     {
         $this->id = (int) $obj->id;
 
-        $this->vaga = ($obj->vaga);
+        $this->vaga_id = (int) ($obj->vaga_id);
         $this->pessoas = ($obj->pessoas);
         $this->fontes = ($obj->fontes);
         $this->dia = $obj->dia;
@@ -68,7 +68,7 @@ class DB
 
     public function __construct()
     {
-        $db = new PDO('mysql:host=localhost;dbname=excel2', 'root', '');
+        $db = new PDO('mysql:host=localhost;dbname=excel3', 'root', '');
         $db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);
 
         $this->conn = $db;

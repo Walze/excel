@@ -60,3 +60,10 @@ INSERT INTO `grupo_linha` (`grupo_id`, `linha_id`) VALUES
 ('6', '13'),
 ('6', '9');
 
+
+
+-- vagas
+
+INSERT INTO `vaga` (`nome`) VALUES
+('Assessor de Midia'),
+('Programador');

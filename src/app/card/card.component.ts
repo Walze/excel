@@ -21,7 +21,7 @@ export class CardComponent implements OnDestroy {
     public processosService: ProcessosService
   ) {
 
-    processosService.onChange((resp) => {
+    processosService.dados.subscribe((resp) => {
       console.log('Processos Changed:', resp);
       this.dados = resp;
     });

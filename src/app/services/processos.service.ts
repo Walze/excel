@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { IDadoProcesso, ILinha, IProcesso } from '../models/IResponse';
-import { Subject, throwError } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { Subject } from 'rxjs';
 
 const api = 'http://localhost:4201';
 
@@ -30,10 +29,6 @@ export class ProcessosService {
     return this._http
       .get<IDadoProcesso[]>(url)
       .subscribe(resp => this._change(resp));
-  }
-
-  public onChange(cb: <T>(resp: IDadoProcesso[]) => T | void) {
-    this.dados.subscribe(resp => cb(resp));
   }
 
   private _change(resp: IDadoProcesso[]) {

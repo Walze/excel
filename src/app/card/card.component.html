@@ -19,9 +19,9 @@
 
 <div *ngFor="let dadoProcesso of dados" class="card mb-4">
   <div class="card-body">
-    <h5 class="card-title">
+    <h4 class="card-title">
       {{dadoProcesso.processo.vaga}}
-    </h5>
+    </h4>
     <h6 class="card-subtitle mb-2 text-muted">
       {{dadoProcesso.processo.dia.split('-').reverse().join('/')}}
     </h6>

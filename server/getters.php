@@ -16,6 +16,7 @@ function getResponse($db, $dia, $vaga)
 
     $linhas = $db->fetchAll($query);
     $processos = getProcessos($db, $dia, $vaga);
+
     $tables = getTables($db, $linhas, $processos);
 
     return $tables;
