@@ -1,14 +1,5 @@
 <?php
 
-function fetchAll($db, $query, $statement = false)
-{
-    $stmt = $db->prepare($query);
-    $stmt->execute();
-    $result = $stmt->fetchAll();
-
-    return $statement ? $stmt : $result;
-}
-
 function json_print($data)
 {
     $encoded = json_encode($data);
@@ -30,4 +21,33 @@ function findValueInArrayOfObject($array, $key, $value)
     }
 
     return false;
+}
+
+function tirarAcentos($string)
+{
+    return preg_replace(
+        array(
+            "/(á|à|ã|â|ä)/",
+            "/(Á|À|Ã|Â|Ä)/",
+            "/(é|è|ê|ë)/",
+            "/(É|È|Ê|Ë)/",
+            "/(í|ì|î|ï)/",
+            "/(Í|Ì|Î|Ï)/",
+            "/(ó|ò|õ|ô|ö)/",
+            "/(Ó|Ò|Õ|Ô|Ö)/",
+            "/(ú|ù|û|ü)/",
+            "/(Ú|Ù|Û|Ü)/",
+            "/(ñ)/",
+            "/(Ñ)/",
+        ),
+        explode(" ", "a A e E i I o O u U n N"),
+        $string
+    );
+}
+
+function getPost($string)
+{
+
+    return isset($_POST[$string]) ? $_POST[$string] : null;
+
 }

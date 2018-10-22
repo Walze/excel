@@ -11,11 +11,30 @@ function main($db)
     $dia->de = $de;
     $dia->ate = $ate;
 
-    if ($dia->de === 'null' || $dia->de === null || $dia->de === false) {
+    if ($dia->de === false && $dia->ate === false) {
+        $dia = false;
+    } else if ($dia->de === 'null' || $dia->de === null || $dia->de === false) {
         $dia->de = 'true';
     }
 
     json_print(
-        getResponse($db->conn, $dia, $vaga)
+        getResponse($db, $dia, $vaga)
+    );
+}
+
+function novoProcesso($db, $data)
+{
+    $obj = (object) $data;
+    $exists = $db->exists(
+        'processo',
+        "dia='{$obj->dia}' AND vaga='{$obj->vaga}'"
+    );
+
+    if ($exists) {
+        throw new Exception("Processo já existe.", 1);
+    }
+
+    json_print(
+        $db->save('processo', [$data])
     );
 }

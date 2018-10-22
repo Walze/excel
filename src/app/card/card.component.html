@@ -1,3 +1,10 @@
+<div class="my-4">
+  <a (click)="todosProcessos($event)" href="#">
+    Selecione uma data ou clique aqui para
+    listar todos os processos.
+  </a>
+</div>
+
 <div class='row'>
   <div class="form-group col-md-6">
     <label>De:</label>
@@ -8,6 +15,7 @@
     <input (change)="onDateChange()" [(ngModel)]='form.ate' type="date" class="form-control">
   </div>
 </div>
+
 
 <div *ngFor="let dadoProcesso of dados" class="card mb-4">
   <div class="card-body">
@@ -20,9 +28,9 @@
     <div class="card-text">
 
 
-      <div class="list-group my-4 flex-row justify-content-around">
+      <div class="list-group my-4 flex-row flex-wrap justify-content-around">
 
-        <div class="mr-1 list-group-item flex-column align-items-start col-md-5 col-sm-12">
+        <div class="m-1 list-group-item flex-column align-items-start col-md-5 col-sm-12">
           <div class="d-flex w-100 justify-content-between">
             <h5 class="mb-1">Fontes</h5>
           </div>

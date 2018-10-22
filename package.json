@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "concurrently \"npm run serve\" \"npm run php\" ",
+    "start": "start npm run serve && start npm run php ",
     "serve": "ng serve",
     "php": "php -S localhost:4201 -t server/",
     "build": "ng build",

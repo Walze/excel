@@ -16,13 +16,25 @@ export class NovoProcessoComponent {
     dia: '',
   };
 
+  private readonly _initial: IProcesso = {
+    vaga: '',
+    fontes: '',
+    pessoas: '',
+    dia: '',
+  };
+
   constructor(
     public service: ProcessosService
   ) {
   }
 
   salvar() {
+    if (!this.novo.vaga || !this.novo.dia) {
+      return alert('Preencha os campos');
+    }
+
     this.service.novoProcesso(this.novo);
+    this.novo = this._initial;
   }
 
 

@@ -74,8 +74,57 @@ class DB
         $this->conn = $db;
     }
 
-    private function makeColumnsValues($objects)
+    public function execute($query, $statement = false)
     {
+        $stmt = $this->conn->prepare($query);
+        $execute = $stmt->execute();
+
+        return $statement ? $stmt : $execute;
+    }
+
+    public function fetchAll($query, $statement = false)
+    {
+        $stmt = $this->execute($query, true);
+        $result = $stmt->fetchAll();
+
+        return $statement ? $stmt : $result;
+    }
+
+    public function save($table, $objects)
+    {
+        $colsVals = $this->_makeColumnsValues($objects);
+
+        $query = "INSERT
+          INTO `{$table}` {$colsVals->columns}
+          VALUES {$colsVals->values}
+        ;";
+
+        return $this->execute($query);
+    }
+
+    public function exists($table, $where)
+    {
+        $result = $this->find($table, $where);
+
+        return count($result) >= 1;
+    }
+
+    public function find($table, $where)
+    {
+        $query = "SELECT *
+        FROM {$table}
+        WHERE {$where}
+        ;";
+
+        return $this->fetchAll($query);
+    }
+
+    private function _makeColumnsValues($objects)
+    {
+        if (!is_array($objects)) {
+            throw new Exception("Expected Array of Objects", 1);
+        }
+
         $stringArr = [];
         $columnsArr = [];
 
@@ -105,16 +154,8 @@ class DB
         return $result;
     }
 
-    public function save($table, $objects)
+    public function __destruct()
     {
-        $colsVals = $this->makeColumnsValues($objects);
-
-        $query = "INSERT
-          INTO `{$table}` {$colsVals->columns}
-          VALUES {$colsVals->values}
-        ;";
-
-        return $query;
+        $this->conn = null;
     }
-
 }

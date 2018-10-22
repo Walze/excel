@@ -22,8 +22,19 @@ export class CardComponent implements OnDestroy {
   ) {
 
     processosService.onChange((resp) => {
+      console.log('Processos Changed:', resp);
       this.dados = resp;
     });
+  }
+
+  todosProcessos(e: Event) {
+    e.preventDefault();
+
+    if (confirm('Essa operação pode demorar um pouco.')) {
+      this.processosService.all().add(() => {
+        alert('Processos Carregados!');
+      });
+    }
   }
 
   onDateChange() {

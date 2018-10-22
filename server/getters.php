@@ -1,7 +1,6 @@
 <?php
 
-
-function getResponse($conn, $dia, $vaga)
+function getResponse($db, $dia, $vaga)
 {
 
     $query = "SELECT
@@ -15,14 +14,14 @@ function getResponse($conn, $dia, $vaga)
       INNER JOIN `linha` AS D ON B.linha_id = D.id
     ;";
 
-    $linhas = fetchAll($conn, $query);
-    $processos = getProcessos($conn, $dia, $vaga);
-    $tables = getTables($conn, $linhas, $processos);
+    $linhas = $db->fetchAll($query);
+    $processos = getProcessos($db, $dia, $vaga);
+    $tables = getTables($db, $linhas, $processos);
 
     return $tables;
 }
 
-function getProcessos($conn, $dia, $vaga)
+function getProcessos($db, $dia, $vaga)
 {
     $whereDia = $dia ? "`dia` BETWEEN '{$dia->de}' AND '{$dia->ate}'" : 'true';
     $whereVaga = $vaga ? "vaga = '{$vaga}'" : 'true';
@@ -32,19 +31,19 @@ function getProcessos($conn, $dia, $vaga)
       WHERE {$whereVaga} AND {$whereDia}
     ;";
 
-    $processos = fetchAll($conn, $query);
+    $processos = $db->fetchAll($query);
 
     return processProcessos($processos);
 }
 
-function getTables($conn, $linhas, $processos)
+function getTables($db, $linhas, $processos)
 {
     $response = [];
 
     foreach ($processos as $processo) {
 
-        $contadores = getContadores($conn, $processo);
-        $table = getTableDia($conn, $linhas, $contadores, $processo);
+        $contadores = getContadores($db, $processo);
+        $table = getTableDia($linhas, $contadores, $processo);
 
         array_push($response, $table);
     }
@@ -52,7 +51,7 @@ function getTables($conn, $linhas, $processos)
     return $response;
 }
 
-function getContadores($conn, $processo)
+function getContadores($db, $processo)
 {
 
     $query = "SELECT *
@@ -60,21 +59,20 @@ function getContadores($conn, $processo)
       WHERE processo_id = {$processo->id}
     ;";
 
-    $contadores = fetchAll($conn, $query);
+    $contadores = $db->fetchAll($query);
 
     return processContadores($contadores);
 }
 
-function getTableDia($conn, $linhas, $contadores, $processo)
+function getTableDia($linhas, $contadores, $processo)
 {
     return tableResponseFactory(
-        $conn,
         processTable($linhas, $contadores),
         $processo
     );
 }
 
-function tableResponseFactory($conn, $table, $processo)
+function tableResponseFactory($table, $processo)
 {
     return [
         'table' => $table,

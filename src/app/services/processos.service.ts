@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { IDadoProcesso, ILinha, IProcesso } from '../models/IResponse';
-import { Subject } from 'rxjs';
+import { Subject, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 
 const api = 'http://localhost:4201';
 
@@ -16,6 +17,10 @@ export class ProcessosService {
   constructor(
     private _http: HttpClient
   ) { }
+
+  public all() {
+    return this._getDadosHttp(api);
+  }
 
   public get(de: string, ate: string) {
     return this._getDadosHttp(`${api}/?de=${de}&ate=${ate}`);
@@ -54,13 +59,20 @@ export class ProcessosService {
   }
 
   public async novoProcesso(obj: IProcesso) {
-    console.log(obj);
+    const httpOptions = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+    };
 
-    this._http.post(`${api}/processo`, obj)
-      .subscribe(result => {
-        console.warn(result);
-      });
-
+    this._http.post(`${api}/processo`, obj, httpOptions)
+      .subscribe(added => {
+        console.log(added);
+        if (added === true) {
+          alert('Adicionado');
+        } else {
+          alert('Erro');
+          console.error(added);
+        }
+      }, (er: HttpErrorResponse) => console.error(er.error.text, er));
   }
 
 }
