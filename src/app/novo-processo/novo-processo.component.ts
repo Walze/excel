@@ -9,12 +9,7 @@ import { IProcesso } from '../models/IResponse';
 })
 export class NovoProcessoComponent {
 
-  public novo: IProcesso = {
-    vaga: '',
-    fontes: '',
-    pessoas: '',
-    dia: '',
-  };
+  public novo: IProcesso;
 
   private readonly _initial: IProcesso = {
     vaga: '',
@@ -23,9 +18,16 @@ export class NovoProcessoComponent {
     dia: '',
   };
 
+  public visivel = false;
+
   constructor(
     public service: ProcessosService
   ) {
+    this.novo = this._initial;
+  }
+
+  toggle() {
+    this.visivel = !this.visivel;
   }
 
   salvar() {
@@ -35,6 +37,7 @@ export class NovoProcessoComponent {
 
     this.service.novoProcesso(this.novo);
     this.novo = this._initial;
+    this.visivel = false;
   }
 
 

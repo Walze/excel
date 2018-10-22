@@ -1,11 +1,13 @@
 <div class="d-flex justify-content-center mb-4">
 
-  <button class='btn btn-primary'>Novo Processo</button>
+  <button (click)="toggle()" class='btn btn-primary'>
+    {{!visivel ? "Novo processo" : "Fechar"}}
+  </button>
 
 </div>
 
 
-<div class="card mb-4">
+<div class="card mb-4" *ngIf="visivel">
   <div class="card-body">
     <h5 class="card-title">
       Criar um Novo Processo
