@@ -1,43 +1,32 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { IDadoProcesso, ILinha, IProcesso } from '../models/IResponse';
-import { Subject } from 'rxjs';
+import { Store } from './Store';
+import { httpHeadersOptionsAppJson, logHttpError } from 'src/helpers';
 
-const api = 'http://localhost:4201';
+
 
 @Injectable({
   providedIn: 'root'
 })
-export class ProcessosService {
-
-  private _dados: IDadoProcesso[];
-  public dados = new Subject<IDadoProcesso[]>();
+export class ProcessosService extends Store<IDadoProcesso> {
 
   constructor(
-    private _http: HttpClient
-  ) { }
+    protected _http: HttpClient
+  ) {
+    super(_http);
+  }
 
   public all() {
-    return this._getDadosHttp(api);
+    return this._getStoreData();
   }
 
   public get(de: string, ate: string) {
-    return this._getDadosHttp(`${api}/?de=${de}&ate=${ate}`);
-  }
-
-  private _getDadosHttp(url: string) {
-    return this._http
-      .get<IDadoProcesso[]>(url)
-      .subscribe(resp => this._change(resp));
-  }
-
-  private _change(resp: IDadoProcesso[]) {
-    this._dados = resp;
-    this.dados.next(this._dados);
+    return this._getStoreData(`/?de=${de}&ate=${ate}`);
   }
 
   public updateContador(linhaArg: ILinha, processoId: number) {
-    const copy = [...this._dados];
+    const copy = [...this.storeData];
     const dadoProcesso = copy.find(p => p.processo.id === processoId);
 
     dadoProcesso.table.map(grupo => {
@@ -50,24 +39,25 @@ export class ProcessosService {
       });
     });
 
-    this._change(copy);
+    this._updateStore(copy);
   }
 
   public async novoProcesso(obj: IProcesso) {
-    const httpOptions = {
-      headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-    };
 
-    this._http.post(`${api}/processo`, obj, httpOptions)
-      .subscribe(added => {
-        console.log(added);
-        if (added === true) {
-          alert('Adicionado');
-        } else {
-          alert('Erro');
-          console.error(added);
-        }
-      }, (er: HttpErrorResponse) => console.error(er.error.text, er));
+    this._http
+      .post(`${this.api}/processo`, obj, httpHeadersOptionsAppJson())
+      .subscribe(
+        added => {
+          console.log(added);
+          if (added === true) {
+            alert('Adicionado');
+          } else {
+            alert('Erro, possivelmente esse processo já existe.');
+            console.error(added);
+          }
+        },
+        logHttpError
+      );
   }
 
 }

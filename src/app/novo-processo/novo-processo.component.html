@@ -21,11 +21,17 @@
 
         <div class="form-group col-md-6 col-sm-12">
           <label>Vaga</label>
-          <input [(ngModel)]="novo.vaga" type="text" class="form-control">
+          <select class="custom-select" [(ngModel)]="novo.vaga_id">
+            <option value="0" selected disabled>Escolha uma vaga</option>
+            <option *ngFor="let vaga of vagas" value={{vaga.id}}>{{vaga.nome}}</option>
+          </select>
           <small class="form-text text-muted">
-            Nome da vaga
+            <a (click)="novaVaga($event)" href="#">
+              Clique aqui para adicionar nova vaga
+            </a>
           </small>
         </div>
+
         <div class="form-group col-md-6 col-sm-12">
           <label>Fontes</label>
           <input [(ngModel)]="novo.fontes" type="text" class="form-control">
@@ -33,6 +39,7 @@
             Fontes de divulgação usadas
           </small>
         </div>
+
         <div class="form-group col-md-6 col-sm-12">
           <label>Triagem feita por</label>
           <input [(ngModel)]="novo.pessoas" type="text" class="form-control">
@@ -40,10 +47,10 @@
             Nome das pessoas que fizeram
           </small>
         </div>
+
         <div class="form-group col-md-6 col-sm-12">
           <label>Data</label>
           <input [(ngModel)]="novo.dia" type="date" class="form-control">
-
         </div>
 
       </div>

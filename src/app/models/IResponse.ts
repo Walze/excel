@@ -17,7 +17,7 @@ export interface IProcesso {
   dia: string;
   pessoas: string;
   vaga_id: number;
-  vaga_nome: string;
+  vaga_nome?: string;
 }
 
 export type ITable = IGrupo[];

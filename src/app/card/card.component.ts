@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { ProcessosService } from '../services/processos.service';
 import { IDadoProcesso, ILinha } from '../models/IResponse';
 
@@ -20,8 +20,7 @@ export class CardComponent implements OnDestroy {
   constructor(
     public processosService: ProcessosService
   ) {
-
-    processosService.dados.subscribe((resp) => {
+    processosService.event.subscribe((resp) => {
       console.log('Processos Changed:', resp);
       this.dados = resp;
     });
@@ -48,6 +47,6 @@ export class CardComponent implements OnDestroy {
   }
 
   ngOnDestroy() {
-    this.processosService.dados.unsubscribe();
+    this.processosService.event.unsubscribe();
   }
 }
