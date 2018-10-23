@@ -1,4 +1,4 @@
 export interface IVaga {
-  id: number;
+  id?: number;
   nome: string;
 }

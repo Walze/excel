@@ -20,6 +20,8 @@ export class NovoProcessoComponent {
     dia: '',
   };
 
+  public novaVaga: IVaga;
+
   public vagas: IVaga[];
 
   public visivel = false;
@@ -35,12 +37,12 @@ export class NovoProcessoComponent {
     });
   }
 
-  novaVaga(e: Event) {
+  criarVaga(e: Event) {
     e.preventDefault();
 
-    const nome = prompt('Digite o nome da vaga');
+    this.novaVaga.nome = prompt('Digite o nome da vaga');
 
-    alert(nome);
+    this._vagasS.novaVaga(this.novaVaga);
   }
 
   toggle() {

@@ -44,7 +44,7 @@ export class ProcessosService extends Store<IDadoProcesso> {
 
   public async novoProcesso(obj: IProcesso) {
 
-    this._http
+    return this._http
       .post(`${this.api}/processo`, obj, httpHeadersOptionsAppJson())
       .subscribe(
         added => {

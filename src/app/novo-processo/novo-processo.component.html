@@ -26,7 +26,7 @@
             <option *ngFor="let vaga of vagas" value={{vaga.id}}>{{vaga.nome}}</option>
           </select>
           <small class="form-text text-muted">
-            <a (click)="novaVaga($event)" href="#">
+            <a (click)="criarVaga($event)" href="#">
               Clique aqui para adicionar nova vaga
             </a>
           </small>

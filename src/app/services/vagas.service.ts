@@ -2,6 +2,7 @@ import { IVaga } from './../models/IVaga';
 import { Injectable } from '@angular/core';
 import { Store } from './Store';
 import { HttpClient } from '@angular/common/http';
+import { logHttpError } from 'src/helpers';
 
 
 
@@ -15,6 +16,12 @@ export class VagasService extends Store<IVaga> {
     protected _http: HttpClient
   ) {
     super(_http);
+  }
+
+  novaVaga(vaga: IVaga) {
+    this._http
+      .post(`${this.api}/vagas`, vaga)
+      .subscribe(console.warn, logHttpError);
   }
 
   get() {
