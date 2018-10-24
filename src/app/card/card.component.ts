@@ -10,7 +10,7 @@ import { IContadorClick } from './tabela/tabela.component';
 })
 export class CardComponent implements OnDestroy {
 
-  public dados: ICard[] = [];
+  public dados: ReadonlyArray<ICard> = [];
   public xPorClick = 1;
 
   public form = {
@@ -24,7 +24,7 @@ export class CardComponent implements OnDestroy {
   ) {
     cardS.event.subscribe((resp) => {
       console.log('Processos Changed:', resp);
-      this.dados = resp;
+      this.dados = Object.freeze(resp);
     });
   }
 
