@@ -67,7 +67,6 @@ function novaVaga($db, $data)
 function updateContador($db, $data)
 {
     $linha = $data['linha'];
-    $add = $data['add'] ? 1 : -1;
 
     unset($linha['nome']);
 
@@ -81,7 +80,7 @@ function updateContador($db, $data)
 
     if ($found) {
         $query = "UPDATE `contador_linha`
-          SET `contador` = `contador` + $add
+          SET `contador` = {$linha['contador']}
           WHERE ${where}
         ;";
 

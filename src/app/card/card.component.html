@@ -1,3 +1,12 @@
+<div class="x-click">
+  <div>
+    <input [(ngModel)]='xPorClick' type="number" class="form-control form-control-sm">
+    <small class="form-text text-muted">
+      Mover X por Click
+    </small>
+  </div>
+</div>
+
 <div class="my-4">
   <a (click)="todosProcessos($event)" href="#">
     Selecione uma data ou clique aqui para
@@ -51,8 +60,7 @@
       </div>
 
 
-      <app-tabela (contadorClick)="onContadorChange($event)" [tabela]='card.table'>
-
+      <app-tabela (contadorClick)="onContadorChange($event)" [tabela]='card.table' [xPorClick]="xPorClick">
       </app-tabela>
 
     </div>

@@ -14,6 +14,7 @@ export interface IContadorClick {
 export class TabelaComponent {
 
   @Input() public tabela: ITable;
+  @Input() public xPorClick: number;
   @Output() public contadorClick = new EventEmitter<IContadorClick>();
 
   public click(e: Event, linhaArg: ILinha) {
@@ -24,7 +25,7 @@ export class TabelaComponent {
 
     if (!add && linha.contador <= 0) { return; }
 
-    linha.contador += add ? 1 : -1;
+    linha.contador += (add ? 1 : -1) * this.xPorClick;
 
     this.contadorClick.emit({ linha, add });
   }

@@ -8,7 +8,7 @@ export class Store<T> {
 
   constructor(
     protected _http: HttpClient,
-    protected api: string = 'http://localhost:4201'
+    protected api: string = 'http://192.168.13.35:4201'
   ) {
   }
 

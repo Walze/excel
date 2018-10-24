@@ -11,6 +11,7 @@ import { IContadorClick } from './tabela/tabela.component';
 export class CardComponent implements OnDestroy {
 
   public dados: ICard[] = [];
+  public xPorClick = 1;
 
   public form = {
     de: null,
@@ -31,9 +32,7 @@ export class CardComponent implements OnDestroy {
     e.preventDefault();
 
     if (confirm('Essa operação pode demorar um pouco.')) {
-      this.cardS.all().add(() => {
-        alert('Processos Carregados!');
-      });
+      this.cardS.all();
     }
   }
 

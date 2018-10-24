@@ -1,0 +1,11 @@
+.x-click {
+  width: 140px;
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  z-index: 100;
+  background: rgba(204, 204, 204, 0.5);
+  padding: .5rem;
+  text-align: center;
+}
+
