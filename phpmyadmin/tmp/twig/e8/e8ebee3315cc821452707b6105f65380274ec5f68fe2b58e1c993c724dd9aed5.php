@@ -180,6 +180,6 @@ class __TwigTemplate_9dd97c8c82f9ea476f6a7d7b1582380b9fd1277311ae3f71660cbe7e43f
 
     public function getSourceContext()
     {
-        return new Twig_Source("", "database/structure/check_all_tables.twig", "C:\\Users\\walla\\Downloads\\phpMyAdmin-4.8.3-all-languages\\templates\\database\\structure\\check_all_tables.twig");
+        return new Twig_Source("", "database/structure/check_all_tables.twig", "C:\\Users\\yrosino\\excel\\phpmyadmin\\templates\\database\\structure\\check_all_tables.twig");
     }
 }

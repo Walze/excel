@@ -20,7 +20,7 @@ export class NovoProcessoComponent {
     dia: '',
   };
 
-  public novaVaga: IVaga;
+  public novaVaga: IVaga = {} as IVaga;
 
   public vagas: IVaga[];
 
@@ -42,7 +42,16 @@ export class NovoProcessoComponent {
 
     this.novaVaga.nome = prompt('Digite o nome da vaga');
 
-    this._vagasS.novaVaga(this.novaVaga);
+    this._vagasS
+      .novaVaga(this.novaVaga)
+      .subscribe(added => {
+        alert(added ? 'Adicionado' : 'Erro ao adicionar, possivelmente, vaga já existe.');
+
+        if (added) {
+          this.novaVaga.nome = '';
+          this._vagasS.get();
+        }
+      });
   }
 
   toggle() {

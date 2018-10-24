@@ -128,10 +128,6 @@ class DB
 
   private function _makeColumnsValues($objects)
   {
-    if (!is_array($objects)) {
-      throw new Exception("Expected Array of Objects", 1);
-    }
-
     $stringArr = [];
     $columnsArr = [];
 

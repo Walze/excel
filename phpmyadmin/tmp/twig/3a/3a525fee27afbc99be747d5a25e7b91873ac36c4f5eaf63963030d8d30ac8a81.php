@@ -52,6 +52,6 @@ class __TwigTemplate_67109631ee042bf4542a7822d84664fee67462f5348462896b4f6be58be
 
     public function getSourceContext()
     {
-        return new Twig_Source("", "database/structure/browse_table.twig", "C:\\Users\\walla\\Downloads\\phpMyAdmin-4.8.3-all-languages\\templates\\database\\structure\\browse_table.twig");
+        return new Twig_Source("", "database/structure/browse_table.twig", "C:\\Users\\yrosino\\excel\\phpmyadmin\\templates\\database\\structure\\browse_table.twig");
     }
 }

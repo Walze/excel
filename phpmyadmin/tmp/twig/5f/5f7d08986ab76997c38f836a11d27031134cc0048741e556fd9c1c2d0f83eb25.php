@@ -54,6 +54,6 @@ class __TwigTemplate_cc4e262cb8e792436d9f7c3d333b015148a91d69a5f214869bbc59c106c
 
     public function getSourceContext()
     {
-        return new Twig_Source("", "database/structure/browse_table_label.twig", "C:\\Users\\walla\\Downloads\\phpMyAdmin-4.8.3-all-languages\\templates\\database\\structure\\browse_table_label.twig");
+        return new Twig_Source("", "database/structure/browse_table_label.twig", "C:\\Users\\yrosino\\excel\\phpmyadmin\\templates\\database\\structure\\browse_table_label.twig");
     }
 }

@@ -1,20 +1,5 @@
 <?php
 
-function exception_error_handler($errno, $errstr, $errfile, $errline)
-{
-  $error = new ErrorException($errstr, $errno, 0, $errfile, $errline);
-
-  json_print([
-    'number' => $errno,
-    'string' => $errstr,
-    'file' => $errfile,
-    'line' => $errline,
-  ]);
-
-  throw $error;
-}
-set_error_handler("exception_error_handler");
-
 header("Content-Type: application/json; charset=ISO-8859-1", true);
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
@@ -56,7 +41,7 @@ try {
 
     switch ($uri[0]) {
       case 'vagas':
-        novaVaga($db);
+        novaVaga($db, $data);
         break;
 
       case 'contador':

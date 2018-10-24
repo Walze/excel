@@ -84,6 +84,6 @@ class __TwigTemplate_c8ac8949874100b8af377cc478bc73dcb55094006806f390efe91372671
 
     public function getSourceContext()
     {
-        return new Twig_Source("", "console/query_action.twig", "C:\\Users\\walla\\Downloads\\phpMyAdmin-4.8.3-all-languages\\templates\\console\\query_action.twig");
+        return new Twig_Source("", "console/query_action.twig", "C:\\Users\\yrosino\\excel\\phpmyadmin\\templates\\console\\query_action.twig");
     }
 }

@@ -78,6 +78,6 @@ class __TwigTemplate_0356145ccb194de1c117091006cfe956d726e99c57fb3310f8afe3539b1
 
     public function getSourceContext()
     {
-        return new Twig_Source("", "console/toolbar.twig", "C:\\Users\\walla\\Downloads\\phpMyAdmin-4.8.3-all-languages\\templates\\console\\toolbar.twig");
+        return new Twig_Source("", "console/toolbar.twig", "C:\\Users\\yrosino\\excel\\phpmyadmin\\templates\\console\\toolbar.twig");
     }
 }

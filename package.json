@@ -4,6 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "start npm run serve && start npm run php && start npm run phpmyadmin",
+    "open-tabs": "start http://localhost:4200  && start http://localhost:4201  && start http://localhost:4202",
     "serve": "ng serve",
     "php": "php -S localhost:4201 -t server/",
     "phpmyadmin": "php -S localhost:4202 -t phpmyadmin/",

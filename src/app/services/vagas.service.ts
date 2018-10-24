@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Store } from './Store';
 import { HttpClient } from '@angular/common/http';
 import { logHttpError } from 'src/helpers';
+import { Subject } from 'rxjs';
 
 
 
@@ -19,9 +20,16 @@ export class VagasService extends Store<IVaga> {
   }
 
   novaVaga(vaga: IVaga) {
+    const subject = new Subject<boolean>();
+
     this._http
-      .post(`${this.api}/vagas`, vaga)
-      .subscribe(console.warn, logHttpError);
+      .post<boolean>(`${this.api}/vagas`, vaga)
+      .subscribe(
+        added => subject.next(added),
+        logHttpError
+      );
+
+    return subject;
   }
 
   get() {

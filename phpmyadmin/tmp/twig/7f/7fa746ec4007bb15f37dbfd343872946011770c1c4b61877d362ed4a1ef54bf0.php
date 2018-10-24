@@ -280,6 +280,6 @@ class __TwigTemplate_31bebeec3a0f5133512b3424bc00570dfbe185b95aceab3512a350496bc
 
     public function getSourceContext()
     {
-        return new Twig_Source("", "database/structure/body_for_table_summary.twig", "C:\\Users\\walla\\Downloads\\phpMyAdmin-4.8.3-all-languages\\templates\\database\\structure\\body_for_table_summary.twig");
+        return new Twig_Source("", "database/structure/body_for_table_summary.twig", "C:\\Users\\yrosino\\excel\\phpmyadmin\\templates\\database\\structure\\body_for_table_summary.twig");
     }
 }

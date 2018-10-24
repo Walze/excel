@@ -248,6 +248,6 @@ $context["record"], "timevalue", array(), "array")) : (_gettext("During current 
 
     public function getSourceContext()
     {
-        return new Twig_Source("", "console/display.twig", "C:\\Users\\walla\\Downloads\\phpMyAdmin-4.8.3-all-languages\\templates\\console\\display.twig");
+        return new Twig_Source("", "console/display.twig", "C:\\Users\\yrosino\\excel\\phpmyadmin\\templates\\console\\display.twig");
     }
 }

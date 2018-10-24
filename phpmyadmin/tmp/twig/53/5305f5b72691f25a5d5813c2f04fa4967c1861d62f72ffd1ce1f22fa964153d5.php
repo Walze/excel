@@ -61,6 +61,6 @@ class __TwigTemplate_0663765d4e5f8f5b01e0aa40db0502bbcb68b268ccc7e9fcbc1075253d3
 
     public function getSourceContext()
     {
-        return new Twig_Source("", "database/structure/print_view_data_dictionary_link.twig", "C:\\Users\\walla\\Downloads\\phpMyAdmin-4.8.3-all-languages\\templates\\database\\structure\\print_view_data_dictionary_link.twig");
+        return new Twig_Source("", "database/structure/print_view_data_dictionary_link.twig", "C:\\Users\\yrosino\\excel\\phpmyadmin\\templates\\database\\structure\\print_view_data_dictionary_link.twig");
     }
 }

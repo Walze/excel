@@ -72,6 +72,6 @@ class __TwigTemplate_48b15d641be27162dfa5cecc25b4127342c7fcb8ccb5a4e2ce5018435b2
 
     public function getSourceContext()
     {
-        return new Twig_Source("", "login/header.twig", "C:\\Users\\walla\\Downloads\\phpMyAdmin-4.8.3-all-languages\\templates\\login\\header.twig");
+        return new Twig_Source("", "login/header.twig", "C:\\Users\\yrosino\\excel\\phpmyadmin\\templates\\login\\header.twig");
     }
 }

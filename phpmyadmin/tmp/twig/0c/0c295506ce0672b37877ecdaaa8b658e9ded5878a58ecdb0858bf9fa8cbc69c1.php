@@ -116,6 +116,6 @@ class __TwigTemplate_af39da6338092d37c0221d2b48fb30627d829fc253f2cc60158a2fc8751
 
     public function getSourceContext()
     {
-        return new Twig_Source("", "select_lang.twig", "C:\\Users\\walla\\Downloads\\phpMyAdmin-4.8.3-all-languages\\templates\\select_lang.twig");
+        return new Twig_Source("", "select_lang.twig", "C:\\Users\\yrosino\\excel\\phpmyadmin\\templates\\select_lang.twig");
     }
 }

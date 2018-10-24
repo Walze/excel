@@ -87,6 +87,6 @@ $context["bookmark"], "getDatabase", array(), "method")))));
 
     public function getSourceContext()
     {
-        return new Twig_Source("", "console/bookmark_content.twig", "C:\\Users\\walla\\Downloads\\phpMyAdmin-4.8.3-all-languages\\templates\\console\\bookmark_content.twig");
+        return new Twig_Source("", "console/bookmark_content.twig", "C:\\Users\\yrosino\\excel\\phpmyadmin\\templates\\console\\bookmark_content.twig");
     }
 }

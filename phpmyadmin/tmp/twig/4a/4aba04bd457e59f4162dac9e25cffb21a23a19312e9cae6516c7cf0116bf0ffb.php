@@ -73,6 +73,6 @@ class __TwigTemplate_92a4f82976e2868eff38ecf905f197033c6f927bede34332d18312405d6
 
     public function getSourceContext()
     {
-        return new Twig_Source("", "navigation/logo.twig", "C:\\Users\\walla\\Downloads\\phpMyAdmin-4.8.3-all-languages\\templates\\navigation\\logo.twig");
+        return new Twig_Source("", "navigation/logo.twig", "C:\\Users\\yrosino\\excel\\phpmyadmin\\templates\\navigation\\logo.twig");
     }
 }
