@@ -1,8 +1,8 @@
 import { IVaga } from './../models/IVaga';
 import { VagasService } from './../services/vagas.service';
-import { Component, OnInit } from '@angular/core';
-import { ProcessosService } from '../services/processos.service';
+import { Component } from '@angular/core';
 import { IProcesso } from '../models/IResponse';
+import { CardService } from '../services/card.service';
 
 @Component({
   selector: 'app-novo-processo',
@@ -27,7 +27,7 @@ export class NovoProcessoComponent {
   public visivel = false;
 
   constructor(
-    private _processosS: ProcessosService,
+    private _cardS: CardService,
     private _vagasS: VagasService
   ) {
     this.novo = this._initial;
@@ -45,7 +45,11 @@ export class NovoProcessoComponent {
     this._vagasS
       .novaVaga(this.novaVaga)
       .subscribe(added => {
-        alert(added ? 'Adicionado' : 'Erro ao adicionar, possivelmente, vaga já existe.');
+        alert(
+          added
+            ? 'Adicionado'
+            : 'Erro ao adicionar, possivelmente vaga já existe.'
+        );
 
         if (added) {
           this.novaVaga.nome = '';
@@ -66,11 +70,10 @@ export class NovoProcessoComponent {
     this.novo.vaga_id = Number(this.novo.vaga_id);
 
     if (this.novo.vaga_id === 0 || !this.novo.dia) {
-      console.log(this.novo);
       return alert('Preencha os campos');
     }
 
-    this._processosS.novoProcesso(this.novo);
+    this._cardS.novoProcesso(this.novo);
     this.novo = this._initial;
     // this.visivel = false;
   }

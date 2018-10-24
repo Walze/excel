@@ -22,7 +22,7 @@ export interface IProcesso {
 
 export type ITable = IGrupo[];
 
-export interface IDadoProcesso {
+export interface ICard {
   processo: IProcesso;
   table: ITable;
 }

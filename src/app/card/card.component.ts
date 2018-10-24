@@ -1,6 +1,6 @@
 import { Component, OnDestroy } from '@angular/core';
-import { ProcessosService } from '../services/processos.service';
-import { IDadoProcesso, ILinha } from '../models/IResponse';
+import { ICard, ILinha } from '../models/IResponse';
+import { CardService } from '../services/card.service';
 
 @Component({
   selector: 'app-card',
@@ -9,7 +9,7 @@ import { IDadoProcesso, ILinha } from '../models/IResponse';
 })
 export class CardComponent implements OnDestroy {
 
-  public dados: IDadoProcesso[] = [];
+  public dados: ICard[] = [];
 
   public form = {
     de: null,
@@ -18,9 +18,9 @@ export class CardComponent implements OnDestroy {
   };
 
   constructor(
-    public processosService: ProcessosService
+    public cardS: CardService
   ) {
-    processosService.event.subscribe((resp) => {
+    cardS.event.subscribe((resp) => {
       console.log('Processos Changed:', resp);
       this.dados = resp;
     });
@@ -30,7 +30,7 @@ export class CardComponent implements OnDestroy {
     e.preventDefault();
 
     if (confirm('Essa operação pode demorar um pouco.')) {
-      this.processosService.all().add(() => {
+      this.cardS.all().add(() => {
         alert('Processos Carregados!');
       });
     }
@@ -39,14 +39,14 @@ export class CardComponent implements OnDestroy {
   onDateChange() {
     if (!this.form.de || !this.form.ate) { return; }
 
-    return this.processosService.get(this.form.de, this.form.ate);
+    return this.cardS.get(this.form.de, this.form.ate);
   }
 
-  onContadorChange(linha: ILinha, id: number) {
-    this.processosService.updateContador(linha, id);
+  onContadorChange(linha: ILinha, processoId: number) {
+    this.cardS.alterarContador(linha, processoId);
   }
 
   ngOnDestroy() {
-    this.processosService.event.unsubscribe();
+    this.cardS.event.unsubscribe();
   }
 }

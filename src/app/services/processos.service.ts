@@ -1,15 +1,10 @@
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { IDadoProcesso, ILinha, IProcesso } from '../models/IResponse';
+import { ICard, ILinha, IProcesso } from '../models/IResponse';
 import { Store } from './Store';
 import { httpHeadersOptionsAppJson, logHttpError } from 'src/helpers';
 
 
-
-@Injectable({
-  providedIn: 'root'
-})
-export class ProcessosService extends Store<IDadoProcesso> {
+export class ProcessosService extends Store<ICard> {
 
   constructor(
     protected _http: HttpClient
@@ -18,14 +13,15 @@ export class ProcessosService extends Store<IDadoProcesso> {
   }
 
   public all() {
-    return this._getStoreData();
+    return super._getStoreData();
   }
 
   public get(de: string, ate: string) {
-    return this._getStoreData(`/?de=${de}&ate=${ate}`);
+    return super._getStoreData(`/?de=${de}&ate=${ate}`);
   }
 
-  public updateContador(linhaArg: ILinha, processoId: number) {
+  protected _updateContador(linhaArg: ILinha, processoId: number) {
+
     const copy = [...this.storeData];
     const dadoProcesso = copy.find(p => p.processo.id === processoId);
 
@@ -39,7 +35,7 @@ export class ProcessosService extends Store<IDadoProcesso> {
       });
     });
 
-    this._updateStore(copy);
+    super._updateStore(copy);
   }
 
   public async novoProcesso(obj: IProcesso) {

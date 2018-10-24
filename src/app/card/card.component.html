@@ -17,13 +17,13 @@
 </div>
 
 
-<div *ngFor="let dadoProcesso of dados" class="card mb-4">
+<div *ngFor="let card of dados" class="card mb-4">
   <div class="card-body">
     <h4 class="card-title">
-      {{dadoProcesso.processo.vaga_nome}}
+      {{card.processo.vaga_nome}}
     </h4>
     <h6 class="card-subtitle mb-2 text-muted">
-      {{dadoProcesso.processo.dia.split('-').reverse().join('/')}}
+      {{card.processo.dia.split('-').reverse().join('/')}}
     </h6>
     <div class="card-text">
 
@@ -35,7 +35,7 @@
             <h5 class="mb-1">Fontes</h5>
           </div>
           <p class="mb-1">
-            {{dadoProcesso.processo.fontes}}
+            {{card.processo.fontes}}
           </p>
         </div>
 
@@ -44,14 +44,14 @@
             <h5 class="mb-1">Triagem Feita Por</h5>
           </div>
           <p class="mb-1">
-            {{dadoProcesso.processo.pessoas}}
+            {{card.processo.pessoas}}
           </p>
         </div>
 
       </div>
 
 
-      <app-tabela (contadorChange)="onContadorChange($event, dadoProcesso.processo.id)" [tabela]='dadoProcesso.table'>
+      <app-tabela (contadorClick)="onContadorChange($event, card.processo.id)" [tabela]='card.table'>
 
       </app-tabela>
 

@@ -9,17 +9,18 @@ import { ITable, ILinha } from 'src/app/models/IResponse';
 export class TabelaComponent {
 
   @Input() public tabela: ITable;
-  @Output() public contadorChange = new EventEmitter<ILinha>();
+  @Output() public contadorClick = new EventEmitter<ILinha>();
 
-  public click(e: Event, linha: ILinha) {
+  public click(e: Event, linhaArg: ILinha) {
     e.preventDefault();
 
+    const linha = Object.assign({}, linhaArg);
     const add = e.type !== 'contextmenu';
 
     if (!add && linha.contador <= 0) { return; }
 
     linha.contador += add ? 1 : -1;
 
-    this.contadorChange.emit(linha);
+    this.contadorClick.emit(linha);
   }
 }
