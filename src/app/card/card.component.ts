@@ -1,6 +1,7 @@
 import { Component, OnDestroy } from '@angular/core';
 import { ICard, ILinha } from '../models/IResponse';
 import { CardService } from '../services/card.service';
+import { IContadorClick } from './tabela/tabela.component';
 
 @Component({
   selector: 'app-card',
@@ -42,8 +43,8 @@ export class CardComponent implements OnDestroy {
     return this.cardS.get(this.form.de, this.form.ate);
   }
 
-  onContadorChange(linha: ILinha) {
-    this.cardS.alterarContador(linha);
+  onContadorChange(clickObj: IContadorClick) {
+    this.cardS.alterarContador(clickObj);
   }
 
   ngOnDestroy() {

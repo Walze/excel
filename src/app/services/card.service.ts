@@ -3,6 +3,7 @@ import { ProcessosService } from './processos.service';
 import { ILinha } from '../models/IResponse';
 import { HttpClient } from '@angular/common/http';
 import { logHttpError } from 'src/helpers';
+import { IContadorClick } from '../card/tabela/tabela.component';
 
 @Injectable({
   providedIn: 'root'
@@ -15,13 +16,13 @@ export class CardService extends ProcessosService {
     super(_http);
   }
 
-  alterarContador(linha: ILinha) {
-    super._updateContador(linha);
+  alterarContador(clickObj: IContadorClick) {
+    super._updateContador(clickObj.linha);
 
     this._http
       .post(
         `${this.api}/contador`,
-        linha
+        clickObj
       )
       .subscribe(console.warn, logHttpError);
   }
