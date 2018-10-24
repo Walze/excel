@@ -24,6 +24,6 @@ export class CardService extends ProcessosService {
         `${this.api}/contador`,
         clickObj
       )
-      .subscribe(console.warn, logHttpError);
+      .subscribe(null, logHttpError);
   }
 }

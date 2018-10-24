@@ -6,4 +6,7 @@ export function httpHeadersOptionsAppJson() {
   };
 }
 
-export const logHttpError = (er: HttpErrorResponse) => console.error(er.error.text, er);
+export const logHttpError = (er: HttpErrorResponse) => {
+  alert('Erro, veja o console.');
+  console.error(er.error.text, er);
+};
