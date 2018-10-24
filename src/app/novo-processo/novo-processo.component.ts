@@ -42,6 +42,10 @@ export class NovoProcessoComponent {
 
     this.novaVaga.nome = prompt('Digite o nome da vaga');
 
+    if (!this.novaVaga.nome) {
+      return;
+    }
+
     this._vagasS
       .novaVaga(this.novaVaga)
       .subscribe(added => {

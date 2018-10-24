@@ -57,9 +57,13 @@ function fetchVagas($db)
     json_print($data);
 }
 
-function novaVaga($db, $data)
+function novaVaga($db, $vaga)
 {
-    $result = $db->save('vaga', [$data]);
+    if ($vaga->nome == '') {
+        return;
+    }
+
+    $result = $db->save('vaga', [$vaga]);
 
     json_print($result);
 }
@@ -86,7 +90,6 @@ function updateContador($db, $data)
 
         $result = $db->execute($query);
     } else {
-        $linha['contador'] = 1;
         $result = $db->save('contador_linha', [$linha]);
     }
 
