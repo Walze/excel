@@ -45,7 +45,7 @@ try {
         break;
 
       case 'contador':
-        var_dump($uri);
+        updateContador($db, $data);
         break;
 
       case 'processo':

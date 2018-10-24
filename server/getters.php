@@ -75,7 +75,7 @@ function getContadores($db, $processo)
 function getTableDia($linhas, $contadores, $processo)
 {
     return tableResponseFactory(
-        processTable($linhas, $contadores),
+        processTable($linhas, $contadores, $processo->id),
         $processo
     );
 }

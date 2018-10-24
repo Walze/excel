@@ -18,7 +18,7 @@ function processContadores($contadores)
     return $contadores;
 }
 
-function processTable($grupo_linha, $contadores)
+function processTable($grupo_linha, $contadores, $processo_id)
 {
     $grupos = [];
 
@@ -37,20 +37,24 @@ function processTable($grupo_linha, $contadores)
             array_push($grupos, $grupo);
         }
 
-        $linha = new Linha($item->linha_id, $item->linha_nome);
-
         $contadorObj = findValueInArrayOfObject(
             $contadores,
             'grupo_linha_id',
             $item->id
         );
 
-        $linha->grupo_linha_id = $item->id;
-        $linha->contador = $contadorObj
+        $contador = $contadorObj
         ? $contadorObj->contador
         : 0;
 
-        array_push($grupo->linhas, $linha);
+        $linha = [
+            'grupo_linha_id' => (int) $item->id,
+            'processo_id' => (int) $processo_id,
+            'contador' => (int) $contador,
+            'nome' => $item->linha_nome,
+        ];
+
+        array_push($grupo->linhas, (object) $linha);
     }
 
     return $grupos;

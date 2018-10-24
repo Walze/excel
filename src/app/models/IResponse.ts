@@ -3,6 +3,7 @@ export interface ILinha {
   nome: string;
   contador: number;
   grupo_linha_id: number;
+  processo_id: number;
 }
 
 export interface IGrupo {

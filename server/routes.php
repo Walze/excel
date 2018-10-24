@@ -47,10 +47,10 @@ function novoProcesso($db, $data)
 
 function fetchVagas($db)
 {
-    $query = " SELECT
-  *
-  FROM `vaga`
-  ;";
+    $query = "SELECT
+      *
+      FROM `vaga`
+    ;";
 
     $data = $db->fetchAll($query);
 
@@ -62,4 +62,33 @@ function novaVaga($db, $data)
     $result = $db->save('vaga', [$data]);
 
     json_print($result);
+}
+
+function updateContador($db, $linha)
+{
+    unset($linha['nome']);
+
+    $where = "
+      grupo_linha_id = '{$linha['grupo_linha_id']}'
+      AND
+      processo_id = '{$linha['processo_id']}'
+    ";
+
+    $found = $db->exists('contador_linha', $where);
+
+    if ($found) {
+        $query = "UPDATE `contador_linha`
+          SET `contador` = `contador` + 1
+          WHERE ${where}
+        ;";
+
+        $result = $db->execute($query);
+    } else {
+        $linha['contador'] = 1;
+        $result = $db->save('contador_linha', [$linha]);
+    }
+
+    json_print(
+        $result
+    );
 }

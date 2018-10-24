@@ -20,10 +20,10 @@ export class ProcessosService extends Store<ICard> {
     return super._getStoreData(`/?de=${de}&ate=${ate}`);
   }
 
-  protected _updateContador(linhaArg: ILinha, processoId: number) {
+  protected _updateContador(linhaArg: ILinha) {
 
     const copy = [...this.storeData];
-    const dadoProcesso = copy.find(p => p.processo.id === processoId);
+    const dadoProcesso = copy.find(p => p.processo.id === linhaArg.processo_id);
 
     dadoProcesso.table.map(grupo => {
       grupo.linhas.map(linha => {

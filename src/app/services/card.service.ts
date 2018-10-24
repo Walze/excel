@@ -15,13 +15,13 @@ export class CardService extends ProcessosService {
     super(_http);
   }
 
-  alterarContador(linha: ILinha, processo_id: number) {
-    super._updateContador(linha, processo_id);
+  alterarContador(linha: ILinha) {
+    super._updateContador(linha);
 
     this._http
       .post(
         `${this.api}/contador`,
-        { processo_id, linha }
+        linha
       )
       .subscribe(console.warn, logHttpError);
   }

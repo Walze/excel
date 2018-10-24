@@ -42,8 +42,8 @@ export class CardComponent implements OnDestroy {
     return this.cardS.get(this.form.de, this.form.ate);
   }
 
-  onContadorChange(linha: ILinha, processoId: number) {
-    this.cardS.alterarContador(linha, processoId);
+  onContadorChange(linha: ILinha) {
+    this.cardS.alterarContador(linha);
   }
 
   ngOnDestroy() {
