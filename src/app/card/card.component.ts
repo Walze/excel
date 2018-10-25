@@ -2,6 +2,7 @@ import { Component, OnDestroy } from '@angular/core';
 import { ICard, ILinha } from '../models/IResponse';
 import { CardService } from '../services/card.service';
 import { IContadorClick } from './tabela/tabela.component';
+import { deepFreeze } from 'src/helpers';
 
 @Component({
   selector: 'app-card',
@@ -10,7 +11,7 @@ import { IContadorClick } from './tabela/tabela.component';
 })
 export class CardComponent implements OnDestroy {
 
-  public dados: ReadonlyArray<ICard> = [];
+  public cards: ReadonlyArray<ICard> = [];
   public xPorClick = 1;
 
   public form = {
@@ -24,16 +25,15 @@ export class CardComponent implements OnDestroy {
   ) {
     cardS.event.subscribe((resp) => {
       console.log('Processos Changed:', resp);
-      this.dados = Object.freeze(resp);
+      this.cards = deepFreeze(resp);
     });
   }
 
   todosProcessos(e: Event) {
     e.preventDefault();
 
-    if (confirm('Essa operação pode demorar um pouco.')) {
-      this.cardS.all();
-    }
+    this.cardS.all();
+    alert('Essa operação pode demorar um pouco.');
   }
 
   onDateChange() {

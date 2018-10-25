@@ -19,9 +19,12 @@ export class Store<T> {
   protected _getStoreData(params: string = '') {
     return this._http
       .get<T[]>(this.api + params)
-      .subscribe(resp =>
-        this._updateStore(resp)
-      );
+      .subscribe(resp => {
+
+        if (!resp.length) { alert('Nenhum encontrado.'); }
+
+        this._updateStore(resp);
+      });
   }
 
   protected _updateStore(arr: T[]) {

@@ -13,14 +13,14 @@ export interface IContadorClick {
 })
 export class TabelaComponent {
 
-  @Input() public tabela: ITable;
+  @Input() public tabela: Readonly<ITable>;
   @Input() public xPorClick: number;
   @Output() public contadorClick = new EventEmitter<IContadorClick>();
 
   public click(e: Event, linhaArg: ILinha) {
     e.preventDefault();
 
-    const linha = Object.assign({}, linhaArg);
+    const linha = { ...linhaArg };
     const add = e.type !== 'contextmenu';
 
     if (!add && linha.contador <= 0) { return; }
