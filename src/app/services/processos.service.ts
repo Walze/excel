@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { ICard, ILinha, IProcesso } from '../models/IResponse';
 import { Store } from './Store';
-import { httpHeadersOptionsAppJson, logHttpError, clone } from 'src/helpers';
+import { httpHeadersOptionsAppJson, logHttpError, CloneObject } from 'src/helpers';
 
 
 export class ProcessosService extends Store<ICard> {
@@ -22,7 +22,7 @@ export class ProcessosService extends Store<ICard> {
 
   protected _updateContador(linhaArg: ILinha) {
 
-    const copy = clone(this.storeData);
+    const copy = CloneObject(this.storeData);
     const dadoProcesso = copy.find(p => p.processo.id === linhaArg.processo_id);
 
     dadoProcesso.table.map(grupo => {

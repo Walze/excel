@@ -11,22 +11,22 @@ export const logHttpError = (er: HttpErrorResponse) => {
   console.error(er.error.text, er);
 };
 
-export const clone = <T>(obj: T): T => JSON.parse(JSON.stringify(obj));
+export const CloneObject = <T>(obj: T): T =>
+  JSON.parse(
+    JSON.stringify(obj)
+  );
 
-export const deepFreeze = <T>(obj: T) => {
+export const FreezeObject = <T>(objOriginal: T) => {
 
-  const propNames = Object.getOwnPropertyNames(obj);
+  const obj = CloneObject(objOriginal);
 
-  propNames.forEach(function (prop) {
-    const value = obj[prop];
-
-    if (
-      typeof value === 'object'
-      && value !== null
-    ) {
-      deepFreeze(value);
-    }
-  });
+  Object
+    .values(obj)
+    .map(value =>
+      typeof value === 'object' && value !== null
+        ? FreezeObject(value)
+        : undefined
+    );
 
   return Object.freeze(obj);
 };
