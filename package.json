@@ -1,6 +1,7 @@
 {
   "name": "excel",
   "version": "0.0.0",
+  "homepage": "./",
   "scripts": {
     "ng": "ng",
     "start": "start npm run serve && start npm run php && start npm run phpmyadmin",
@@ -13,7 +14,7 @@
     "serve:ip": "ng serve --host 192.168.13.35",
     "php:ip": "php -S 192.168.13.35:4201 -t server/",
     "phpmyadmin:ip": "php -S 192.168.13.35:4202 -t phpmyadmin/",
-    "build": "ng build",
+    "build": "ng build --prod --base-href ./",
     "lint": "ng lint"
   },
   "private": true,

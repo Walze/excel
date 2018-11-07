@@ -1,6 +1,14 @@
 import { Subject } from 'rxjs/internal/Subject';
 import { HttpClient } from '@angular/common/http';
 
+// export function isInDevMode(): boolean {
+//   return isDevMode();
+// }
+
+const apiURL = true
+  ? 'http://localhost:4201'
+  : 'http://talentos.conexaomercado.com.br/apps/triagem/server';
+
 export class Store<T> {
 
   private _eventData: T[];
@@ -8,7 +16,7 @@ export class Store<T> {
 
   constructor(
     protected _http: HttpClient,
-    protected api: string = 'http://192.168.13.35:4201'
+    protected api: string = apiURL
   ) {
   }
 
