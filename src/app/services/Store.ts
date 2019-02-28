@@ -1,11 +1,6 @@
 import { Subject } from 'rxjs/internal/Subject';
 import { HttpClient } from '@angular/common/http';
 
-// export function isInDevMode(): boolean {
-//   return isDevMode();
-// }
-
-
 // selecionar por vaga
 // adicionar estado
 // somar meses
