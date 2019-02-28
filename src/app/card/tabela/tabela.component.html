@@ -1,20 +1,20 @@
 <div class="tabela">
 
-  <div *ngFor="let grupo of tabela" class="linha">
+  <div *ngFor="let grupo of tabela; let i = index" class="linha">
 
-    <div class="grupo">{{grupo.nome}}</div>
-
+    <div class="grupo" [style.background]=cores[i]>{{grupo.nome}}</div>
     <div class="linhas">
 
-      <div *ngFor="let linha of grupo.linhas" class="celula" (click)="click($event, linha)" (contextmenu)="click($event, linha)">
+      <div *ngFor="let linha of grupo.linhas" class="celula" (click)="click($event, linha)"
+        (contextmenu)="click($event, linha)">
         <span class="nome">{{linha.nome}}</span>
         <div class="valor">
           <span>
             {{linha.contador}}
           </span>
         </div>
-      </div>
 
+      </div>
     </div>
 
   </div>

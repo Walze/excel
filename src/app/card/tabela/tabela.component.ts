@@ -1,5 +1,6 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { ITable, ILinha } from 'src/app/models/IResponse';
+import { colorPalette } from './../../../helpers';
 
 export interface IContadorClick {
   linha: ILinha;
@@ -12,6 +13,8 @@ export interface IContadorClick {
   styleUrls: ['./tabela.component.css']
 })
 export class TabelaComponent {
+
+  public cores = colorPalette('#e8f5f9', 18);
 
   @Input() public tabela: Readonly<ITable>;
   @Input() public xPorClick: number;

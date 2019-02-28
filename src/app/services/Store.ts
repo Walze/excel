@@ -5,6 +5,12 @@ import { HttpClient } from '@angular/common/http';
 //   return isDevMode();
 // }
 
+
+// selecionar por vaga
+// adicionar estado
+// somar meses
+// listar linhas por dia
+
 const apiURL = true
   ? 'http://localhost:4201'
   : 'http://talentos.conexaomercado.com.br/apps/triagem/server';

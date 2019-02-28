@@ -1,8 +1,8 @@
 import { Component, OnDestroy } from '@angular/core';
 import { ICard, ILinha } from '../models/IResponse';
-import { CardService } from '../services/card.service';
 import { IContadorClick } from './tabela/tabela.component';
 import { FreezeObject } from 'src/helpers';
+import { ProcessosService } from '../services/processos.service';
 
 @Component({
   selector: 'app-card',
@@ -21,20 +21,24 @@ export class CardComponent implements OnDestroy {
   };
 
   constructor(
-    public cardS: CardService
+    public cardS: ProcessosService
   ) {
     cardS.event.subscribe((resp) => {
       console.log('Processos Changed:', resp);
 
       this.cards = FreezeObject(resp);
     });
+
+    this.todosProcessos();
   }
 
-  todosProcessos(e: Event) {
-    e.preventDefault();
+  todosProcessos(e?: Event) {
+    if (e) {
+      e.preventDefault();
+    }
 
     this.cardS.all();
-    alert('Essa operação pode demorar um pouco.');
+    // alert('Essa operação pode demorar um pouco.');
   }
 
   onDateChange() {

@@ -1,3 +1,4 @@
+import * as hexToHsl from 'hex-to-hsl';
 import { HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 
 export function httpHeadersOptionsAppJson() {
@@ -29,4 +30,25 @@ export const FreezeObject = <T>(objOriginal: T) => {
     );
 
   return Object.freeze(obj);
+};
+
+export const colorPalette = (initialHex, n, step?) => {
+  step = step || 360 / n;
+
+  const hsl = hexToHsl(initialHex);
+  let deg = hsl[0];
+
+  return Array(n)
+    .fill(null)
+    .map(() => {
+
+      const string = `hsl(${deg}, ${hsl[1]}%, ${hsl[2]}%)`;
+      const sum = deg + step;
+
+      deg = sum <= 360 ?
+        sum :
+        sum - 360;
+
+      return string;
+    });
 };

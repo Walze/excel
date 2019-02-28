@@ -2,7 +2,7 @@ import { IVaga } from './../models/IVaga';
 import { VagasService } from './../services/vagas.service';
 import { Component } from '@angular/core';
 import { IProcesso } from '../models/IResponse';
-import { CardService } from '../services/card.service';
+import { ProcessosService } from './../services/processos.service';
 
 @Component({
   selector: 'app-novo-processo',
@@ -27,7 +27,7 @@ export class NovoProcessoComponent {
   public visivel = false;
 
   constructor(
-    private _cardS: CardService,
+    private _cardS: ProcessosService,
     private _vagasS: VagasService
   ) {
     this.novo = this._initial;
