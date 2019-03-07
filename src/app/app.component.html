@@ -1,9 +1,17 @@
-<br>
-<br>
-
 <div class="container">
 
-  <app-novo-processo></app-novo-processo>
-  <app-card></app-card>
+  <ul class="nav nav-tabs justify-content-center">
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/" routerLinkActive="active"
+        [routerLinkActiveOptions]="{exact: true}">Processos</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/relatorio" routerLinkActive="active">Relatório</a>
+    </li>
+  </ul>
+
+  <br>
+
+  <router-outlet></router-outlet>
 
 </div>

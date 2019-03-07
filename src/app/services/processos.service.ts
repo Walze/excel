@@ -29,16 +29,16 @@ export class ProcessosService extends Store<ICard> {
   }
 
   public all() {
-    return super._getStoreData();
+    return super._fetchData();
   }
 
   public get(de: string, ate: string) {
-    return super._getStoreData(`/?de=${de}&ate=${ate}`);
+    return super._fetchData(`/?de=${de}&ate=${ate}`);
   }
 
   protected _updateContador(linhaArg: ILinha) {
 
-    const copy = CloneObject(this.storeData);
+    const copy = CloneObject(this.getData);
     const dadoProcesso = copy.find(p => p.processo.id === linhaArg.processo_id);
 
     dadoProcesso.table.map(grupo => {
@@ -51,7 +51,7 @@ export class ProcessosService extends Store<ICard> {
       });
     });
 
-    super._updateStore(copy);
+    super._updateData(copy);
   }
 
   public async novoProcesso(obj: IProcesso) {

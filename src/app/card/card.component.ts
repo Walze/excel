@@ -1,8 +1,9 @@
-import { Component, OnDestroy } from '@angular/core';
-import { ICard, ILinha } from '../models/IResponse';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ICard } from '../models/IResponse';
 import { IContadorClick } from './tabela/tabela.component';
 import { FreezeObject } from 'src/helpers';
 import { ProcessosService } from '../services/processos.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-card',
@@ -20,10 +21,12 @@ export class CardComponent implements OnDestroy {
     ate: new Date().toISOString().split('T')[0],
   };
 
+  public cardsSub: Subscription;
+
   constructor(
     public cardS: ProcessosService
   ) {
-    cardS.event.subscribe((resp) => {
+    this.cardsSub = cardS.data.subscribe((resp) => {
       console.log('Processos Changed:', resp);
 
       this.cards = FreezeObject(resp);
@@ -52,6 +55,6 @@ export class CardComponent implements OnDestroy {
   }
 
   ngOnDestroy() {
-    this.cardS.event.unsubscribe();
+    this.cardsSub.unsubscribe();
   }
 }

@@ -12,7 +12,6 @@ import { Subject } from 'rxjs';
 })
 export class VagasService extends Store<IVaga> {
 
-
   constructor(
     protected _http: HttpClient
   ) {
@@ -33,6 +32,6 @@ export class VagasService extends Store<IVaga> {
   }
 
   get() {
-    return this._getStoreData('/vagas');
+    return this._fetchData('/vagas');
   }
 }

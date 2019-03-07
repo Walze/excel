@@ -1,8 +1,8 @@
-import { IVaga } from './../models/IVaga';
-import { VagasService } from './../services/vagas.service';
+import { IVaga } from './../../models/IVaga';
 import { Component } from '@angular/core';
-import { IProcesso } from '../models/IResponse';
-import { ProcessosService } from './../services/processos.service';
+import { IProcesso } from './../../models/IResponse';
+import { ProcessosService } from 'src/app/services/processos.service';
+import { VagasService } from 'src/app/services/vagas.service';
 
 @Component({
   selector: 'app-novo-processo',
@@ -32,7 +32,7 @@ export class NovoProcessoComponent {
   ) {
     this.novo = this._initial;
 
-    this._vagasS.event.subscribe(vagas => {
+    this._vagasS.data.subscribe(vagas => {
       this.vagas = vagas;
     });
   }
