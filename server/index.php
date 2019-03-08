@@ -33,8 +33,8 @@ try {
         fetchVagas($db);
         break;
 
-      case 'processo/contador':
-        echo 'hitormiss';
+      case 'filial':
+        fetchFilial($db);
         break;
 
       default:
@@ -46,6 +46,10 @@ try {
     switch ($uriJoin) {
       case 'vagas':
         novaVaga($db, $data);
+        break;
+
+      case 'filial':
+        novaFilial($db, $data);
         break;
 
       case 'processo':

@@ -24,7 +24,7 @@ function main($db)
 
 function novoProcesso($db, $data)
 {
-    $obj = (object) $data;
+    $obj = (object)$data;
     $exists = $db->exists(
         'processo',
         "dia='{$obj->dia}' AND vaga_id='{$obj->vaga_id}'"
@@ -57,13 +57,36 @@ function fetchVagas($db)
     json_print($data);
 }
 
+function fetchFilial($db)
+{
+    $query = "SELECT
+      *
+      FROM `filial`
+    ;";
+
+    $data = $db->fetchAll($query);
+
+    json_print($data);
+}
+
 function novaVaga($db, $vaga)
 {
-    if ($vaga->nome == '') {
+    if (!$vaga && $vaga->nome == '') {
         return;
     }
 
     $result = $db->save('vaga', [$vaga]);
+
+    json_print($result);
+}
+
+function novaFilial($db, $filial)
+{
+    if (!$filial && $filial->nome == '') {
+        return;
+    }
+
+    $result = $db->save('filial', [$filial]);
 
     json_print($result);
 }

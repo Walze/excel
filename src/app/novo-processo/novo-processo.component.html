@@ -33,6 +33,19 @@
         </div>
 
         <div class="form-group col-md-6 col-sm-12">
+          <label>Filial</label>
+          <select class="custom-select" [(ngModel)]="novo.vaga_id">
+            <option value="0" selected disabled>Escolha uma filial</option>
+            <option *ngFor="let filial of filiais" value={{filial.id}}>{{filial.nome}}</option>
+          </select>
+          <small class="form-text text-muted">
+            <a (click)="criarFilial($event)" href="#">
+              Clique aqui para adicionar nova filial
+            </a>
+          </small>
+        </div>
+
+        <div class="form-group col-md-6 col-sm-12">
           <label>Fontes</label>
           <input [(ngModel)]="novo.fontes" type="text" class="form-control">
           <small class="form-text text-muted">

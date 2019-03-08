@@ -29,6 +29,8 @@ class Processo
     public $id;
     public $vaga_id;
     public $vaga_nome;
+    public $filial_id;
+    public $filial_nome;
     public $pessoas;
     public $fontes;
     public $dia;
@@ -40,6 +42,8 @@ class Processo
 
         $this->vaga_id = (int) ($obj->vaga_id);
         $this->vaga_nome = ($obj->vaga_nome);
+        $this->filial_id = (int) ($obj->filial_id);
+        $this->filial_nome = ($obj->filial_nome);
         $this->pessoas = ($obj->pessoas);
         $this->fontes = ($obj->fontes);
         $this->dia = $obj->dia;
@@ -70,7 +74,7 @@ class DB
 
     public function __construct($name, $user, $pass = '')
     {
-        $db = new PDO("mysql:host=localhost;dbname={$name}", $user, $pass);
+        $db = new PDO("mysql:host=localhost;dbname={$name};charset=utf8", $user, $pass);
         $db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);
 
         $this->conn = $db;

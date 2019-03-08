@@ -18,6 +18,8 @@ export interface IProcesso {
   dia: string;
   pessoas: string;
   vaga_id: number;
+  filial_id: number;
+  filial_nome?: number;
   vaga_nome?: string;
 }
 

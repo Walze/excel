@@ -33,9 +33,12 @@ function getProcessos($db, $dia, $vaga)
       A.pessoas as pessoas,
       A.dia as dia,
       B.id as vaga_id,
-      B.nome AS vaga_nome
+      B.nome AS vaga_nome,
+      C.id as filial_id,
+      C.nome as filial_nome
       FROM `processo` AS A
       INNER JOIN `vaga` AS B ON B.id = A.vaga_id
+      INNER JOIN `filial` AS C ON C.id = A.filial_id
       WHERE {$whereVaga} AND {$whereDia}
     ;";
 
