@@ -1,34 +1,4 @@
-<app-novo-processo></app-novo-processo>
-
-<div class="x-click">
-  <div>
-    <input [(ngModel)]='xPorClick' type="number" class="form-control form-control-sm">
-    <small class="form-text text-muted">
-      Mover {{xPorClick}} por Click
-    </small>
-  </div>
-</div>
-
-<div class="my-4">
-  <a (click)="todosProcessos($event)" href="#">
-    Selecione uma data ou clique aqui para
-    listar todos os processos.
-  </a>
-</div>
-
-<div class='row'>
-  <div class="form-group col-md-6">
-    <label>De:</label>
-    <input (change)="onDateChange()" [(ngModel)]='form.de' type="date" class="form-control">
-  </div>
-  <div class="form-group col-md-6">
-    <label>Até:</label>
-    <input (change)="onDateChange()" [(ngModel)]='form.ate' type="date" class="form-control">
-  </div>
-</div>
-
-
-<div *ngFor="let card of cards" class="card mb-4">
+<div class="card mb-4">
   <div class="card-body">
     <h4 class="card-title">
       {{card.processo.vaga_nome}}

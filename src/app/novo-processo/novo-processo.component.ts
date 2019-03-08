@@ -1,8 +1,8 @@
-import { IVaga } from './../../models/IVaga';
 import { Component } from '@angular/core';
-import { IProcesso } from './../../models/IResponse';
 import { ProcessosService } from 'src/app/services/processos.service';
 import { VagasService } from 'src/app/services/vagas.service';
+import { IProcesso } from './../models/IResponse';
+import { IVaga } from './../models/IVaga';
 
 @Component({
   selector: 'app-novo-processo',

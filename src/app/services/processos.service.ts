@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { ICard, ILinha, IProcesso } from '../models/IResponse';
 import { Store } from './Store';
 import { httpHeadersOptionsAppJson, logHttpError, CloneObject } from 'src/helpers';
-import { IContadorClick } from '../card/tabela/tabela.component';
+import { IContadorClick } from '../cards/tabela/tabela.component';
 import { Injectable } from '@angular/core';
 
 
