@@ -1,8 +1,8 @@
 <div class="x-click">
   <div>
-    <input [(ngModel)]='xPorClick' type="number" class="form-control form-control-sm">
+    <input [(ngModel)]='cardS.xPorClick' type="number" class="form-control form-control-sm">
     <small class="form-text text-muted">
-      Mover {{xPorClick}} por Click
+      Mover {{cardS.xPorClick}} por Click
     </small>
   </div>
 </div>
@@ -26,4 +26,4 @@
 </div>
 
 
-<app-card *ngFor="let card of cards" class="card mb-4" [card]=card [xPorClick]=xPorClick></app-card>
+<app-card *ngFor="let card of cards" class="card mb-4" [card]=card></app-card>

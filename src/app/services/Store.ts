@@ -1,6 +1,8 @@
-import { Subject } from 'rxjs/internal/Subject';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs';
+import { EventEmitter } from 'events';
+import { Subject } from 'rxjs/internal/Subject';
+import { IContadorClick } from './../cards/tabela/tabela.component';
 
 // selecionar por vaga
 // adicionar estado
@@ -11,15 +13,17 @@ const apiURL = true
   ? 'http://localhost:4201'
   : 'http://talentos.conexaomercado.com.br/apps/triagem/server';
 
-export abstract class Store<T> {
+export abstract class Store<T> extends EventEmitter {
 
   private _eventData: T[];
   public data = new BehaviorSubject<T[]>([]);
+  public contadorClick = new Subject<IContadorClick>();
 
   constructor(
     protected _http: HttpClient,
     protected api: string = apiURL
   ) {
+    super();
   }
 
   protected get getData() {

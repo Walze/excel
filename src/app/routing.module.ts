@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { CardsComponent } from './cards/card.component';
+import { CardComponent } from './cards/card.component';
 import { RelatorioComponent } from './relatorio/relatorio.component';
 import { HomeComponent } from './home/home.component';
 

@@ -1,6 +1,7 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { ITable, ILinha } from 'src/app/models/IResponse';
 import { colorPalette } from './../../../helpers';
+import { ProcessosService } from 'src/app/services/processos.service';
 
 export interface IContadorClick {
   linha: ILinha;
@@ -17,8 +18,11 @@ export class TabelaComponent {
   public cores = colorPalette('#e8f5f9', 18);
 
   @Input() public tabela: Readonly<ITable>;
-  @Input() public xPorClick: number;
-  @Output() public contadorClick = new EventEmitter<IContadorClick>();
+
+  constructor(
+    public cardS: ProcessosService
+  ) {
+  }
 
   public click(e: Event, linhaArg: ILinha) {
     e.preventDefault();
@@ -28,8 +32,8 @@ export class TabelaComponent {
 
     if (!add && linha.contador <= 0) { return; }
 
-    linha.contador += (add ? 1 : -1) * this.xPorClick;
+    linha.contador += (add ? 1 : -1) * this.cardS.xPorClick;
 
-    this.contadorClick.emit({ linha, add });
+    this.cardS.contadorClick.next({ linha, add });
   }
 }

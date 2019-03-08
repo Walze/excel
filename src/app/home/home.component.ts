@@ -3,7 +3,6 @@ import { ICard } from './../models/IResponse';
 import { Subscription } from 'rxjs';
 import { ProcessosService } from '../services/processos.service';
 import { FreezeObject } from 'src/helpers';
-import { IContadorClick } from './../cards/tabela/tabela.component';
 
 @Component({
   selector: 'app-home',
@@ -13,7 +12,6 @@ import { IContadorClick } from './../cards/tabela/tabela.component';
 export class HomeComponent implements OnDestroy {
 
   public cards: ReadonlyArray<ICard>;
-  public xPorClick = 1;
   public form = {
     de: null,
     // data de hoje
@@ -21,6 +19,7 @@ export class HomeComponent implements OnDestroy {
   };
 
   public cardsSub: Subscription;
+  public contadorSub: Subscription;
 
   constructor(
     public cardS: ProcessosService
@@ -30,6 +29,11 @@ export class HomeComponent implements OnDestroy {
 
       this.cards = FreezeObject(resp);
     });
+
+    this.contadorSub = this.cardS.contadorClick.subscribe(clickObj => {
+      this.cardS.alterarContador(clickObj);
+    });
+
 
     this.todosProcessos();
   }
@@ -51,5 +55,6 @@ export class HomeComponent implements OnDestroy {
 
   ngOnDestroy() {
     this.cardsSub.unsubscribe();
+    this.contadorSub.unsubscribe();
   }
 }

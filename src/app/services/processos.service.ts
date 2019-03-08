@@ -11,6 +11,8 @@ import { Injectable } from '@angular/core';
 })
 export class ProcessosService extends Store<ICard> {
 
+  public xPorClick = 1;
+
   constructor(
     protected _http: HttpClient
   ) {
