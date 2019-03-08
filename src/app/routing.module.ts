@@ -9,12 +9,12 @@ export const routes: Routes = [
     path: 'relatorio',
     component: RelatorioComponent
   },
-  { path: '**', component: HomeComponent }
+  { path: 'home', component: HomeComponent }
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-exports: [RouterModule]
+  exports: [RouterModule]
 })
 
 export class RoutingModule { }

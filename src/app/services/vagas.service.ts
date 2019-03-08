@@ -15,14 +15,14 @@ export class VagasService extends Store<IVaga> {
   constructor(
     protected _http: HttpClient
   ) {
-    super(_http);
+    super(_http, '/vagas');
   }
 
   novaVaga(vaga: IVaga) {
     const subject = new Subject<boolean>();
 
     this._http
-      .post<boolean>(`${this.api}/vagas`, vaga)
+      .post<boolean>(super.getURL(), vaga)
       .subscribe(
         added => subject.next(added),
         logHttpError
@@ -31,7 +31,9 @@ export class VagasService extends Store<IVaga> {
     return subject;
   }
 
-  get() {
-    return this._fetchData('/vagas');
+  async get() {
+    console.warn(await this._fetchData());
+
+    return this._fetchData();
   }
 }

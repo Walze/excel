@@ -17,6 +17,7 @@ foreach (explode("/", $_SERVER['REQUEST_URI']) as $part) {
   array_push($uri, $part);
 }
 array_shift($uri);
+$uriJoin =  join("/", $uri);
 
 $data = json_decode(file_get_contents('php://input'), true);
 $method = $_SERVER['REQUEST_METHOD'];
@@ -27,41 +28,41 @@ try {
 
   if ($method === "GET") {
 
-    switch ($uri[0]) {
+    switch ($uriJoin) {
       case 'vagas':
         fetchVagas($db);
+        break;
+
+      case 'processo/contador':
+        echo 'hitormiss';
         break;
 
       default:
         main($db);
         break;
     }
-
   } elseif ($method === "POST") {
 
-    switch ($uri[0]) {
+    switch ($uriJoin) {
       case 'vagas':
         novaVaga($db, $data);
-        break;
-
-      case 'contador':
-        updateContador($db, $data);
         break;
 
       case 'processo':
         novoProcesso($db, $data);
         break;
+
+      case 'processo/contador':
+        updateContador($db, $data);
+        break;
     }
-
   }
-
 } catch (Throwable $e) {
   json_print([
     'code' => $e->getCode(),
     'text' => $e->getMessage(),
   ]);
-}
-finally {
+} finally {
   $db->conn = null;
   $db = null;
   die();

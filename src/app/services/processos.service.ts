@@ -16,18 +16,18 @@ export class ProcessosService extends Store<ICard> {
   constructor(
     protected _http: HttpClient
   ) {
-    super(_http);
+    super(_http, '');
   }
 
   alterarContador(clickObj: IContadorClick) {
     this._updateContador(clickObj.linha);
 
     this._http
-      .post(
-        `${this.api}/contador`,
+      .post(super.getURL('/processo/contador'),
         clickObj
       )
-      .subscribe(null, logHttpError);
+      .toPromise()
+      .catch(logHttpError);
   }
 
   public all() {
@@ -59,7 +59,11 @@ export class ProcessosService extends Store<ICard> {
   public async novoProcesso(obj: IProcesso) {
 
     return this._http
-      .post(`${this.api}/processo`, obj, httpHeadersOptionsAppJson())
+      .post(
+        super.getURL('/processo'),
+        obj,
+        httpHeadersOptionsAppJson(),
+      )
       .subscribe(
         added => {
           console.log(added);
